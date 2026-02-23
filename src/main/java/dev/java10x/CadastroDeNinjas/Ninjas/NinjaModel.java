@@ -1,6 +1,9 @@
-package dev.java10x.CadastroDeNinjas;
+package dev.java10x.CadastroDeNinjas.Ninjas;
 
+import dev.java10x.CadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 // Entity ele transforma uma classe em uma entidade do DB
 // Table com parametro nome ="" cria um nome para tabale
@@ -10,10 +13,19 @@ public class NinjaModel {
 
     @Id // Spring entender que vamos usar id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Cria strategia de camo gerar os id
-    Long id;
-    String nome;
-    String email;
-    int idade;
+    private Long id;
+
+    private String nome;
+
+    private String email;
+
+    private int idade;
+
+    // @ManyToOne um ninja tem uma unica missão
+    @ManyToOne
+    @JoinColumn(name = "missoes_id")// Foreign Key ou Chave estrangeira
+    private MissoesModel missoes;
+
 
     public NinjaModel() {
     }
